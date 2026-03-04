@@ -1,0 +1,468 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F9FA">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="24dp"
+            android:background="#FFFFFF">
+
+            <ImageView
+                android:layout_gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_calendar"
+                android:tint="#1A1A1A"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="מערכת שעות"
+                android:textColor="#1A1A1A"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="כאן תוכלו למצוא את כל זמני האימונים לכל קבוצות הגיל. בחרו את הקבוצה המתאימה והצטרפו אלינו!"
+                android:textColor="#757575"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:paddingHorizontal="20dp"/>
+
+        </LinearLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/daysTabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:tabTextAppearance="@style/TabTextAppearance"
+        app:tabPaddingStart="0dp"
+        app:tabPaddingEnd="0dp"
+        app:tabIndicatorHeight="0dp"
+        app:tabSelectedTextColor="#FFFFFF"
+        android:background="@android:color/transparent"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scheduleRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp" />
+
+
+
+<!--        <HorizontalScrollView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:scrollbars="none">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="140dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="6dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="יום ראשון"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:background="#E3F2FD"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:layout_marginBottom="6dp"-->
+<!--                        android:textSize="14sp"/>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#9C27B0" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/sun_t1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="16:30 - 17:20" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/sun_c1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_t1" android:layout_alignParentEnd="true" android:text="כיתות ה'-ו'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_c1" android:layout_alignParentEnd="true" android:text="קבוצה א'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#4CAF50" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/sun_t2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="17:20 - 18:10" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/sun_c2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_t2" android:layout_alignParentEnd="true" android:text="כיתות א'-ב'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_c2" android:layout_alignParentEnd="true" android:text="קבוצה א'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#FFC107" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/sun_t3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="18:10 - 19:00" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/sun_c3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_t3" android:layout_alignParentEnd="true" android:text="כיתות ג'-ד'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_c3" android:layout_alignParentEnd="true" android:text="קבוצה א'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#2196F3" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/sun_t4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="19:00 - 19:50" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/sun_c4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_t4" android:layout_alignParentEnd="true" android:text="כיתות ז'-ט'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_c4" android:layout_alignParentEnd="true" android:text="קבוצה א'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#F44336" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/sun_t5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="20:00 - 21:30" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/sun_t5" android:layout_alignParentEnd="true" android:text="קבוצת בוגרים" android:textSize="11sp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="140dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="6dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="יום שני"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:background="#E8F5E9"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:layout_marginBottom="6dp"/>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#9C27B0" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/m1_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="16:30 - 17:20" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/m1_class" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/m1_time" android:layout_alignParentEnd="true" android:text="כיתות ה'-ז'" android:textSize="12sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/m1_class" android:layout_alignParentEnd="true" android:text="קבוצה ב'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#FFC107" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/m2_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="18:10 - 19:00" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/m2_class" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/m2_time" android:layout_alignParentEnd="true" android:text="כיתות ג'-ד'" android:textSize="12sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/m2_class" android:layout_alignParentEnd="true" android:text="קבוצה ב'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#2196F3" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/m3_time" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="19:00 - 19:50" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/m3_class" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/m3_time" android:layout_alignParentEnd="true" android:text="כיתות ח'-ט' ליגה" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/m3_class" android:layout_alignParentEnd="true" android:text="קבוצת ליגה" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="140dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="6dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="יום שלישי"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:background="#FFF3E0"-->
+<!--                        android:textColor="#E65100"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:layout_marginBottom="6dp"-->
+<!--                        android:textSize="14sp"/>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#FF9800" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t3_t1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="17:10 - 18:00" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t3_c1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t3_t1" android:layout_alignParentEnd="true" android:text="קבוצת גנים" android:textSize="11sp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#2196F3" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t3_t2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="18:30 - 19:45" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t3_class_2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t3_t2" android:layout_alignParentEnd="true" android:text="ח'-ט' ליגה" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t3_class_2" android:layout_alignParentEnd="true" android:text="קבוצת ליגה" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#F44336" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t3_t3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="20:00 - 21:30" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t3_t3" android:layout_alignParentEnd="true" android:text="קבוצת בוגרים" android:textSize="11sp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="140dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="6dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="יום רביעי"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:background="#F3E5F5"-->
+<!--                        android:textColor="#7B1FA2"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:layout_marginBottom="6dp"-->
+<!--                        android:textSize="14sp"/>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#9C27B0" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t4_t1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="16:30 - 17:20" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t4_c1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t4_t1" android:layout_alignParentEnd="true" android:text="כיתות ה'-ו'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t4_c1" android:layout_alignParentEnd="true" android:text="קבוצה א'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#4CAF50" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t4_t2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="17:20 - 18:10" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t4_c2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t4_t2" android:layout_alignParentEnd="true" android:text="כיתות א'-ב'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t4_c2" android:layout_alignParentEnd="true" android:text="קבוצה א'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#FFC107" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t4_t3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="18:10 - 19:00" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t4_c3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t4_t3" android:layout_alignParentEnd="true" android:text="כיתות ג'-ד'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t4_c3" android:layout_alignParentEnd="true" android:text="קבוצה א'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#2196F3" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t4_t4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="19:00 - 19:50" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t4_c4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t4_t4" android:layout_alignParentEnd="true" android:text="כיתות ז'-ט'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t4_c4" android:layout_alignParentEnd="true" android:text="קבוצה א'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="140dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:padding="6dp">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="יום חמישי"-->
+<!--                        android:gravity="center"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:background="#E1F5FE"-->
+<!--                        android:textColor="#0288D1"-->
+<!--                        android:padding="8dp"-->
+<!--                        android:layout_marginBottom="6dp"-->
+<!--                        android:textSize="14sp"/>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#9C27B0" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t5_t1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="16:30 - 17:20" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t5_c1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t5_t1" android:layout_alignParentEnd="true" android:text="כיתות ה'-ז'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t5_c1" android:layout_alignParentEnd="true" android:text="קבוצה ב'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#FFC107" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t5_t2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="18:10 - 19:00" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t5_c2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t5_t2" android:layout_alignParentEnd="true" android:text="כיתות ג'-ד'" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t5_c2" android:layout_alignParentEnd="true" android:text="קבוצה ב'" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                    <androidx.cardview.widget.CardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_margin="4dp"-->
+<!--                        app:cardCornerRadius="8dp"-->
+<!--                        app:cardElevation="3dp">-->
+<!--                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">-->
+<!--                            <View android:layout_width="4dp" android:layout_height="match_parent" android:background="#2196F3" />-->
+<!--                            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="10dp">-->
+<!--                                <TextView android:id="@+id/t5_t3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:text="19:00 - 19:50" android:textStyle="bold" android:textSize="12sp" android:textColor="#000000" />-->
+<!--                                <TextView android:id="@+id/t5_c3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t5_t3" android:layout_alignParentEnd="true" android:text="ח'-ט' ליגה" android:textSize="11sp" />-->
+<!--                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/t5_c3" android:layout_alignParentEnd="true" android:text="קבוצת ליגה" android:background="@drawable/bg_tag_blue" android:paddingHorizontal="8dp" android:paddingVertical="2dp" android:textColor="#2196F3" android:textSize="10sp" android:layout_marginTop="4dp" />-->
+<!--                            </RelativeLayout>-->
+<!--                        </LinearLayout>-->
+<!--                    </androidx.cardview.widget.CardView>-->
+
+<!--                </LinearLayout>-->
+
+
+<!--            </LinearLayout>-->
+<!--        </HorizontalScrollView>-->
+
+    </LinearLayout>
+</LinearLayout>

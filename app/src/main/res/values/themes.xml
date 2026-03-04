@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.Technicademy" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:fontFamily">@font/heebo</item>
+
+        <!-- שינוי הפס הסגול ללבן -->
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryContainer">@android:color/white</item>
+        <item name="colorSurface">@android:color/white</item>
+
+        <!-- סימון הטאב הנבחר בניווט התחתון – אפור (לא סגול) -->
+        <item name="colorSecondaryContainer">#E8E8E8</item>
+
+        <!-- שינוי ה-Status Bar -->
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:navigationBarColor">@android:color/white</item>
+    </style>
+
+    <style name="Theme.Technicademy" parent="Base.Theme.Technicademy" />
+
+    <!-- סימון (רקע) הטאב הנבחר בניווט תחתון – אפור -->
+    <style name="BottomNavActiveIndicatorGray" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#E8E8E8</item>
+    </style>
+
+    <style name="TabTextAppearance" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">10sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+</resources>

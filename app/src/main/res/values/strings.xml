@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Technicademy</string>
+    <!-- Web client ID for Google Sign-In (Firebase). Do not use for production secrets. -->
+    <string name="default_web_client_id" translatable="false">339004219726-vc0hj3qjh70mbug2vjg0c84k8f15be3j.apps.googleusercontent.com</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <style name="BottomNavText">
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/heebo</item>
+    </style>
+</resources>

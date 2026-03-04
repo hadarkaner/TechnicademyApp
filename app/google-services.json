@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "339004219726",
+    "project_id": "technicademy-5108f",
+    "storage_bucket": "technicademy-5108f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:339004219726:android:a548ea11257aa8e9bffe1f",
+        "android_client_info": {
+          "package_name": "com.example.technicademy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "339004219726-nup4g7t4r4kuvulqkea9vuuqg7vmo22u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.technicademy",
+            "certificate_hash": "0577eb897eec8106e4b68798e88c685426fce81a"
+          }
+        },
+        {
+          "client_id": "339004219726-vc0hj3qjh70mbug2vjg0c84k8f15be3j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo5LD3Zy4J-z5c4WUyFtod-jz4mhZHswk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "339004219726-vc0hj3qjh70mbug2vjg0c84k8f15be3j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
