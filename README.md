@@ -114,15 +114,15 @@ com.example.technicademy/
 
 <div align="right" dir="rtl">
 
-| **מסך הבית** | **התחברות** |                     **הרשמה**                     |
-|:---:|:---:|:-------------------------------------------------:|
-| <img src="screenshots/home.jpg" width="250"/> | <img src="screenshots/login.jpg" width="250"/> | <img src="screenshots/register.png" width="250"/> |
+|                 **מסך הבית**                  |                  **התחברות**                   |                     **הרשמה**                     |
+|:---------------------------------------------:|:----------------------------------------------:|:-------------------------------------------------:|
+| <img src="screenshots/home.jpg" width="220"/> | <img src="screenshots/login.jpg" width="220"/> | <img src="screenshots/register.jpg" width="220"/> |
 
 <br/>
 
-| **פרופיל** | **צור קשר** | **מערכת שעות** |
-|:---:|:---:|:---:|
-| <img src="screenshots/profile.jpg" width="250"/> | <img src="screenshots/contact.jpg" width="250"/> | <img src="screenshots/schedule.jpg" width="250"/> |
+|                    **פרופיל**                    |                   **צור קשר**                    |                  **מערכת שעות**                   |
+|:------------------------------------------------:|:------------------------------------------------:|:-------------------------------------------------:|
+| <img src="screenshots/profile.jpg" width="220"/> | <img src="screenshots/contact.jpg" width="220"/> | <img src="screenshots/schedule.jpg" width="220"/> |
 
 </div>
 
