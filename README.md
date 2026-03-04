@@ -113,33 +113,33 @@ com.example.technicademy/
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="screenshots/home.jpg" width="250"/><br/>
-  <b>Home Screen</b>
-</p>
-
-<p align="center">
   <img src="screenshots/login.jpg" width="250"/><br/>
   <b>Login Screen</b>
 </p>
-
+---
+<p align="center">
+  <img src="screenshots/home.jpg" width="250"/><br/>
+  <b>Home Screen</b>
+</p>
+---
+<p align="center">
+  <img src="screenshots/schedule.jpg" width="250"/><br/>
+  <b>Schedule Screen</b>
+</p>
+---
 <p align="center">
   <img src="screenshots/register.jpg" width="250"/><br/>
   <b>Register Screen</b>
 </p>
-
-<p align="center">
-  <img src="screenshots/profile.jpg" width="250"/><br/>
-  <b>Profile Screen</b>
-</p>
-
+---
 <p align="center">
   <img src="screenshots/contact.jpg" width="250"/><br/>
   <b>Contact Screen</b>
 </p>
-
+---
 <p align="center">
-  <img src="screenshots/schedule.jpg" width="250"/><br/>
-  <b>Schedule Screen</b>
+  <img src="screenshots/profile.jpg" width="250"/><br/>
+  <b>Profile Screen</b>
 </p>
 ---
 
