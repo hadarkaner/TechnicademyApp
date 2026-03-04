@@ -1,6 +1,7 @@
 package com.example.technicademy.data.repository
 
 import android.content.Context
+import androidx.core.content.edit
 import com.example.technicademy.data.model.Announcement
 import com.example.technicademy.service.UserPreferencesServiceImpl
 import org.json.JSONArray
@@ -42,6 +43,7 @@ object AnnouncementStorage {
         }
     }
 
+    @Suppress("unused")
     fun getByUserId(context: Context, userId: String): List<Announcement> =
         getAll(context).filter { it.userId == userId && !it.isTargeted() }
 
@@ -71,7 +73,7 @@ object AnnouncementStorage {
 
     /** מוחק את כל המודעות שפורסמו */
     fun clearAll(context: Context) {
-        prefs(context).edit().putString(KEY_LIST, "[]").apply()
+        prefs(context).edit { putString(KEY_LIST, "[]") }
     }
 
     private fun save(context: Context, list: List<Announcement>) {
@@ -90,6 +92,6 @@ object AnnouncementStorage {
                 put("targetTimeDisplay", a.targetTimeDisplay ?: "")
             })
         }
-        prefs(context).edit().putString(KEY_LIST, arr.toString()).apply()
+        prefs(context).edit { putString(KEY_LIST, arr.toString()) }
     }
 }

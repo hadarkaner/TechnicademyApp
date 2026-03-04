@@ -19,12 +19,13 @@
                 android:layout_height="200dp"
                 android:src="@drawable/soccer_field"
                 android:scaleType="centerCrop"
-                android:contentDescription="רקע מגרש" />
+                android:contentDescription="@string/home_field_bg" />
 
 
             <ImageView
                 android:layout_width="70dp"
                 android:layout_height="80dp"
+                android:contentDescription="@null"
                 android:src="@drawable/logo_technicademy_round_foreground"
                 android:layout_gravity="center"
                 android:layout_marginTop="0dp"
@@ -33,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TECHNICADEMY"
+                android:text="@string/home_title"
                 android:textColor="#1A1A1A"
                 android:textSize="24sp"
                 android:layout_gravity="center"
@@ -59,7 +60,7 @@
             android:id="@+id/tv_announcements_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="מודעות"
+            android:text="@string/home_announcements"
             android:textColor="#1A1A1A"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -79,7 +80,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="למה אנחנו?"
+            android:text="@string/home_why_us"
             android:textColor="#1A1A1A"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -113,13 +114,14 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:contentDescription="@null"
                         android:src="@android:drawable/ic_menu_myplaces"
                         app:tint="#C9A227" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="מאמנים מקצועיים"
+                        android:text="@string/home_coaches"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#000000"
@@ -129,7 +131,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="צוות מאמנים מוסמכים עם ניסיון בכדורגל ברמה הגבוהה ביותר"
+                        android:text="@string/home_coaches_desc"
                         android:textSize="12sp"
                         android:textColor="#666666"
                         android:layout_marginTop="4dp"
@@ -157,13 +159,14 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:contentDescription="@null"
                         android:src="@android:drawable/btn_star_big_on"
                         app:tint="#C9A227" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="תוכנית אימונים מתקדמת"
+                        android:text="@string/home_program"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#000000"
@@ -173,7 +176,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="תוכנית מותאמת אישית לכל שחקן על פי הגיל, הרמה והיעדים האישיים"
+                        android:text="@string/home_program_desc"
                         android:textSize="12sp"
                         android:textColor="#666666"
                         android:layout_marginTop="4dp"
@@ -201,13 +204,14 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:contentDescription="@null"
                         android:src="@drawable/ic_shield_gold"
                         app:tint="#C9A227" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="בטיחות מקסימלית"
+                        android:text="@string/home_safety"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#000000"
@@ -217,7 +221,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="פרוטוקולי בטיחות קפדניים וציוד מגן איכותי לאימונים בטוחים"
+                        android:text="@string/home_safety_desc"
                         android:textSize="12sp"
                         android:textColor="#666666"
                         android:layout_marginTop="4dp"
@@ -245,13 +249,14 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
+                        android:contentDescription="@null"
                         android:src="@android:drawable/ic_lock_power_off"
                         app:tint="#C9A227" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ציוד מתקדם ואיכותי"
+                        android:text="@string/home_equipment"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#000000"
@@ -261,7 +266,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="מכדורים מקצועיים ועד אביזרי אימון מתקדמים, אנו מספקים את כל הציוד הנדרש לאימון ברמה הגבוהה ביותר."
+                        android:text="@string/home_equipment_desc"
                         android:textSize="12sp"
                         android:textColor="#666666"
                         android:layout_marginTop="4dp"
@@ -287,7 +292,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="צרו איתנו קשר"
+                android:text="@string/home_contact_us"
                 android:textSize="20sp"
                 android:gravity="center"
                 android:textStyle="bold" />
@@ -296,7 +301,7 @@
                 android:id="@+id/btn_whatsapp_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="שלחו לנו הודעה בוואטסאפ"
+                android:text="@string/home_whatsapp"
                 android:backgroundTint="#25D366"
 
                 android:layout_marginTop="16dp" />

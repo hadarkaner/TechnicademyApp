@@ -19,13 +19,14 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@null"
             android:src="@android:drawable/checkbox_on_background"
             android:layout_marginBottom="16dp"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ההרשמה בוצעה בהצלחה!"
+            android:text="@string/dialog_success_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -35,7 +36,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ברוכים הבאים ל-Technicademy!\nהפרטים שלך נקלטו במערכת וניתן לצפות בהם באזור האישי."
+            android:text="@string/dialog_success_message"
             android:textSize="12sp"
             android:textColor="#666666"
             android:gravity="center"
@@ -45,7 +46,7 @@
             android:id="@+id/btn_go_to_profile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:text="מעבר לאזור האישי"
+            android:text="@string/dialog_go_profile"
             android:backgroundTint="@color/black"
             android:textColor="#FFFFFF"
             android:textStyle="bold"

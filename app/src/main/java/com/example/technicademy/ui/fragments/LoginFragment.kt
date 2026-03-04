@@ -49,7 +49,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 } ?: run {
                     Toast.makeText(requireContext(), "שגיאה בקבלת פרטי חשבון", Toast.LENGTH_SHORT).show()
                 }
-            } catch (e: ApiException) {
+            } catch (_: ApiException) {
                 Toast.makeText(requireContext(), "התחברות עם Google נכשלה", Toast.LENGTH_SHORT).show()
             }
         }
@@ -135,6 +135,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         (activity as? MainActivity)?.showMainContent()
     }
 
+    @Suppress("unused")
     companion object {
         const val KEY_CURRENT_USER = "current_username"
         /** מפתח המשתמש הנוכחי – לשימוש בשאר האפליקציה (פרופיל, הרשמה וכו') */

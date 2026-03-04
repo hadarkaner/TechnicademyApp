@@ -1,7 +1,6 @@
 package com.example.technicademy.service
 
 import android.content.Context
-import com.google.firebase.auth.FirebaseAuth
 
 /**
  * שירות גישה לנתוני משתמש שמורים (מאחורי SharedPreferences).

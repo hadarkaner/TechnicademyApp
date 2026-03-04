@@ -2,8 +2,82 @@
     <string name="app_name">Technicademy</string>
     <!-- Web client ID for Google Sign-In (Firebase). Do not use for production secrets. -->
     <string name="default_web_client_id" translatable="false">339004219726-vc0hj3qjh70mbug2vjg0c84k8f15be3j.apps.googleusercontent.com</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Login -->
+    <string name="login_title">התחברות</string>
+    <string name="hint_email">הכנסי אימייל</string>
+    <string name="label_email">אימייל</string>
+    <string name="label_password">סיסמה</string>
+    <string name="hint_password">הכנס סיסמה</string>
+    <string name="forgot_password">שחזור סיסמה</string>
+    <string name="btn_login">התחבר</string>
+    <string name="btn_login_google">התחברי עם Google</string>
+    <string name="no_account_register">אין לך חשבון? הירשמי</string>
+
+    <!-- Register user -->
+    <string name="register_title">הרשמה</string>
+    <string name="hint_choose_password">בחרי סיסמה</string>
+    <string name="label_confirm_password">אימות סיסמה</string>
+    <string name="hint_confirm_password">הכניסי שוב את הסיסמה</string>
+    <string name="btn_register">הירשמי</string>
+    <string name="has_account_login">כבר יש חשבון? התחברי</string>
+
+    <!-- Bottom nav -->
+    <string name="nav_home">בית</string>
+    <string name="nav_schedule">מערכת</string>
+    <string name="nav_purchases">רכישות</string>
+    <string name="nav_contact">צור קשר</string>
+    <string name="nav_profile">פרופיל</string>
+
+    <!-- Home -->
+    <string name="home_field_bg">רקע מגרש</string>
+    <string name="home_title">TECHNICADEMY</string>
+    <string name="home_announcements">מודעות</string>
+    <string name="home_why_us">למה אנחנו?</string>
+    <string name="home_contact_us">צרו איתנו קשר</string>
+    <string name="home_whatsapp">שלחו לנו הודעה בוואטסאפ</string>
+    <string name="home_coaches">מאמנים מקצועיים</string>
+    <string name="home_coaches_desc">צוות מאמנים מוסמכים עם ניסיון בכדורגל ברמה הגבוהה ביותר</string>
+    <string name="home_program">תוכנית אימונים מתקדמת</string>
+    <string name="home_program_desc">תוכנית מותאמת אישית לכל שחקן על פי הגיל, הרמה והיעדים האישיים</string>
+    <string name="home_safety">בטיחות מקסימלית</string>
+    <string name="home_safety_desc">פרוטוקולי בטיחות קפדניים וציוד מגן איכותי לאימונים בטוחים</string>
+    <string name="home_equipment">ציוד מתקדם ואיכותי</string>
+    <string name="home_equipment_desc">מכדורים מקצועיים ועד אביזרי אימון מתקדמים, אנו מספקים את כל הציוד הנדרש לאימון ברמה הגבוהה ביותר.</string>
+
+    <!-- Payment -->
+    <string name="payment_title">פרטי תשלום</string>
+    <string name="payment_card">מספר כרטיס אשראי</string>
+    <string name="payment_card_hint">1234 5678 1234 5678</string>
+    <string name="payment_expiry">תוקף</string>
+    <string name="payment_expiry_hint">MM/YY</string>
+    <string name="payment_cvv_hint">123</string>
+    <string name="payment_cvv">CVV</string>
+    <string name="payment_btn">בצע תשלום והירשם</string>
+
+    <!-- Dialog success -->
+    <string name="dialog_success_title">ההרשמה בוצעה בהצלחה!</string>
+    <string name="dialog_success_message">ברוכים הבאים ל-Technicademy!\nהפרטים שלך נקלטו במערכת וניתן לצפות בהם באזור האישי.</string>
+    <string name="dialog_go_profile">מעבר לאזור האישי</string>
+
+    <!-- Announcement -->
+    <string name="btn_approve_announcement">אשר מודעה</string>
+
+    <!-- Contact -->
+    <string name="contact_title">פרטי התקשרות</string>
+    <string name="contact_opening_hours_label">שעות פתיחת האקדמיה:</string>
+    <string name="contact_opening_hours_value">ראשון-חמישי: 16:30-21:30</string>
+    <string name="contact_phone_value">053-3404212</string>
+    <string name="contact_email_value">dorinbaruch16@gmail.com</string>
+    <string name="contact_address_value">פארק הדגים, מודיעין</string>
+    <string name="contact_map_description">מפת מיקום האקדמיה בפארק הדגים, מודיעין</string>
+
+    <!-- Schedule -->
+    <string name="schedule_title">מערכת שעות</string>
+    <string name="schedule_description">כאן תוכלו למצוא את כל זמני האימונים לכל קבוצות הגיל. בחרו את הקבוצה המתאימה והצטרפו אלינו!</string>
+    <string name="schedule_icon_description">אייקון לוח שנה עבור מערכת השעות</string>
+    <string name="schedule_tabs_description">בחירת יום אימון להצגת מערכת השעות</string>
+
     <style name="BottomNavText">
         <item name="android:textSize">10sp</item>
         <item name="android:fontFamily">@font/heebo</item>

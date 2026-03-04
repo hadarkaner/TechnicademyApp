@@ -1,6 +1,7 @@
 package com.example.technicademy.service
 
 import android.content.Context
+import androidx.core.content.edit
 import com.google.firebase.auth.FirebaseAuth
 
 /**
@@ -22,11 +23,11 @@ object UserPreferencesServiceImpl : UserPreferencesService {
     }
 
     override fun setCurrentUser(context: Context, identifier: String) {
-        prefs(context).edit().putString(KEY_CURRENT_USER, identifier).apply()
+        prefs(context).edit { putString(KEY_CURRENT_USER, identifier) }
     }
 
     override fun clearCurrentUser(context: Context) {
-        prefs(context).edit().remove(KEY_CURRENT_USER).apply()
+        prefs(context).edit { remove(KEY_CURRENT_USER) }
     }
 
     override fun getUserName(context: Context, userKey: String): String {
@@ -37,7 +38,7 @@ object UserPreferencesServiceImpl : UserPreferencesService {
 
     override fun setUserName(context: Context, userKey: String, name: String) {
         val suffix = if (userKey.isNotBlank()) "_$userKey" else ""
-        prefs(context).edit().putString("user_name$suffix", name).apply()
+        prefs(context).edit { putString("user_name$suffix", name) }
     }
 
     override fun getUserCourseKeys(context: Context, userKey: String): String {
@@ -48,7 +49,7 @@ object UserPreferencesServiceImpl : UserPreferencesService {
 
     override fun setUserCourseKeys(context: Context, userKey: String, keys: String) {
         val suffix = if (userKey.isNotBlank()) "_$userKey" else ""
-        prefs(context).edit().putString("user_course_keys$suffix", keys).apply()
+        prefs(context).edit { putString("user_course_keys$suffix", keys) }
     }
 
     override fun getUserCoursesDetails(context: Context, userKey: String): String {
@@ -60,7 +61,7 @@ object UserPreferencesServiceImpl : UserPreferencesService {
 
     override fun setUserCoursesDetails(context: Context, userKey: String, details: String) {
         val suffix = if (userKey.isNotBlank()) "_$userKey" else ""
-        prefs(context).edit().putString("user_courses_details$suffix", details).apply()
+        prefs(context).edit { putString("user_courses_details$suffix", details) }
     }
 
     override fun getProfileImagePath(context: Context, userKey: String): String? {
@@ -70,7 +71,7 @@ object UserPreferencesServiceImpl : UserPreferencesService {
 
     override fun setProfileImagePath(context: Context, userKey: String, path: String) {
         if (userKey.isBlank()) return
-        prefs(context).edit().putString("user_profile_image_$userKey", path).apply()
+        prefs(context).edit { putString("user_profile_image_$userKey", path) }
     }
 
     override fun clearAllRegistrations(context: Context) {
@@ -79,9 +80,8 @@ object UserPreferencesServiceImpl : UserPreferencesService {
             key == "user_name" || key == "user_courses_details" || key == "user_course_keys" ||
                 key.startsWith("user_name_") || key.startsWith("user_courses_details_") || key.startsWith("user_course_keys_")
         }
-        p.edit().apply {
+        p.edit {
             keysToRemove.forEach { remove(it) }
-            apply()
         }
     }
 }

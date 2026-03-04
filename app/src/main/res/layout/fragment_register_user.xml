@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -17,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="הרשמה"
+            android:text="@string/register_title"
             android:textSize="28sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -26,7 +25,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="אימייל"
+            android:text="@string/label_email"
             android:textSize="14sp"
             android:textColor="#333333"
             android:layout_marginBottom="6dp"/>
@@ -35,8 +34,9 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="44dp"
+            android:autofillHints="email"
             android:background="@drawable/rounded_edittext"
-            android:hint="הכנסי אימייל"
+            android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="14dp"
             android:textSize="15sp"
@@ -45,7 +45,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="סיסמה"
+            android:text="@string/label_password"
             android:textSize="14sp"
             android:textColor="#333333"
             android:layout_marginBottom="6dp"/>
@@ -54,8 +54,9 @@
             android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="44dp"
+            android:autofillHints="password"
             android:background="@drawable/rounded_edittext"
-            android:hint="בחרי סיסמה"
+            android:hint="@string/hint_choose_password"
             android:inputType="textPassword"
             android:paddingHorizontal="14dp"
             android:textSize="15sp"
@@ -64,7 +65,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="אימות סיסמה"
+            android:text="@string/label_confirm_password"
             android:textSize="14sp"
             android:textColor="#333333"
             android:layout_marginBottom="6dp"/>
@@ -73,8 +74,9 @@
             android:id="@+id/et_password_confirm"
             android:layout_width="match_parent"
             android:layout_height="44dp"
+            android:autofillHints="password"
             android:background="@drawable/rounded_edittext"
-            android:hint="הכניסי שוב את הסיסמה"
+            android:hint="@string/hint_confirm_password"
             android:inputType="textPassword"
             android:paddingHorizontal="14dp"
             android:textSize="15sp"
@@ -84,7 +86,7 @@
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:text="הירשמי"
+            android:text="@string/btn_register"
             android:backgroundTint="#B08924"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
@@ -94,7 +96,7 @@
             android:id="@+id/tv_go_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="כבר יש חשבון? התחברי"
+            android:text="@string/has_account_login"
             android:textSize="14sp"
             android:textColor="#666666"
             android:padding="8dp"

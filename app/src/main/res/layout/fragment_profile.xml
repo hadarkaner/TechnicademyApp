@@ -134,7 +134,8 @@
                     <Spinner
                         android:id="@+id/spinner_manager_class"
                         android:layout_width="match_parent"
-                        android:layout_height="44dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
                         android:background="@drawable/rounded_edittext"
                         android:paddingHorizontal="14dp"
                         android:layout_marginBottom="8dp"/>
@@ -142,7 +143,8 @@
                     <Spinner
                         android:id="@+id/spinner_manager_day"
                         android:layout_width="match_parent"
-                        android:layout_height="44dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
                         android:background="@drawable/rounded_edittext"
                         android:paddingHorizontal="14dp"
                         android:layout_marginBottom="8dp"/>
@@ -150,7 +152,8 @@
                     <Spinner
                         android:id="@+id/spinner_manager_time"
                         android:layout_width="match_parent"
-                        android:layout_height="44dp"
+                        android:layout_height="48dp"
+                        android:minHeight="48dp"
                         android:background="@drawable/rounded_edittext"
                         android:paddingHorizontal="14dp"/>
                 </LinearLayout>
@@ -171,7 +174,8 @@
                 <Button
                     android:id="@+id/btn_publish_announcement"
                     android:layout_width="match_parent"
-                    android:layout_height="44dp"
+                    android:layout_height="48dp"
+                    android:minHeight="48dp"
                     android:text="פרסם מודעה"
                     android:backgroundTint="#000000"
                     android:textColor="#FFFFFF"

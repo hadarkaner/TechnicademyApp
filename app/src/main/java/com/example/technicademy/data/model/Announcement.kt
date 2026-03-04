@@ -18,7 +18,9 @@ data class Announcement(
     /** שעת השיעור להצגה (למנהל) */
     val targetTimeDisplay: String? = null
 ) {
+    @Suppress("unused")
     fun isPending() = status == "pending"
+    @Suppress("unused")
     fun isApproved() = status == "approved"
     fun isTargeted() = !targetCourseKey.isNullOrBlank()
 }

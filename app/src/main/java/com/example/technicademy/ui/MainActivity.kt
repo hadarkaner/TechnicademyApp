@@ -9,7 +9,6 @@ import com.example.technicademy.service.UserPreferencesServiceImpl
 import com.example.technicademy.ui.fragments.ContactFragment
 import com.example.technicademy.ui.fragments.HomeFragment
 import com.example.technicademy.ui.fragments.LoginFragment
-import com.example.technicademy.ui.fragments.PaymentFragment
 import com.example.technicademy.ui.fragments.ProfileFragment
 import com.example.technicademy.ui.fragments.RegisterFragment
 import com.example.technicademy.ui.fragments.ScheduleFragment
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
                 showMainContent()
             } else {
                 val currentUser = UserPreferencesServiceImpl.getCurrentUserKey(this)
-                if (currentUser.isNullOrBlank()) {
+                if (currentUser.isBlank()) {
                     showLoginScreen()
                 } else {
                     showMainContent()

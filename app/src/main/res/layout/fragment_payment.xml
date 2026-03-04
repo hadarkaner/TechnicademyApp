@@ -10,7 +10,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="פרטי תשלום"
+        android:text="@string/payment_title"
         android:textSize="26sp"
         android:textStyle="bold"
         android:textColor="#B8860B"
@@ -39,13 +39,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="מספר כרטיס אשראי"
+        android:text="@string/payment_card"
         android:textStyle="bold"
         android:layout_marginBottom="8dp"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:hint="1234 5678 1234 5678"
+        android:autofillHints="creditCardNumber"
+        android:hint="@string/payment_card_hint"
         android:inputType="number"
         android:background="@drawable/rounded_edittext"
         android:paddingHorizontal="16dp"
@@ -55,7 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:weightSum="2">
+        android:weightSum="2"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -66,12 +68,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="תוקף"
+                android:text="@string/payment_expiry"
                 android:textStyle="bold"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="MM/YY"
+                android:autofillHints="creditCardExpirationDate"
+                android:inputType="date"
+                android:hint="@string/payment_expiry_hint"
                 android:background="@drawable/rounded_edittext"
                 android:paddingHorizontal="16dp"/>
         </LinearLayout>
@@ -84,12 +88,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CVV"
+                android:text="@string/payment_cvv"
                 android:textStyle="bold"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="123"
+                android:autofillHints="creditCardSecurityCode"
+                android:hint="@string/payment_cvv_hint"
                 android:inputType="number"
                 android:background="@drawable/rounded_edittext"
                 android:paddingHorizontal="16dp"/>
@@ -100,7 +105,7 @@
         android:id="@+id/btn_complete_registration"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:text="בצע תשלום והירשם"
+        android:text="@string/payment_btn"
         android:layout_marginTop="40dp"
         android:backgroundTint="#1A1A1A"
         app:cornerRadius="12dp"/>

@@ -25,13 +25,14 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_calendar"
-                android:tint="#1A1A1A"
-                android:layout_marginBottom="10dp" />
+                app:tint="#1A1A1A"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/schedule_icon_description" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="מערכת שעות"
+                android:text="@string/schedule_title"
                 android:textColor="#1A1A1A"
                 android:textSize="32sp"
                 android:textStyle="bold"
@@ -40,7 +41,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="כאן תוכלו למצוא את כל זמני האימונים לכל קבוצות הגיל. בחרו את הקבוצה המתאימה והצטרפו אלינו!"
+                android:text="@string/schedule_description"
                 android:textColor="#757575"
                 android:textSize="14sp"
                 android:gravity="center"
@@ -49,20 +50,21 @@
 
         </LinearLayout>
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/daysTabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
-        app:tabTextAppearance="@style/TabTextAppearance"
-        app:tabPaddingStart="0dp"
-        app:tabPaddingEnd="0dp"
-        app:tabIndicatorHeight="0dp"
-        app:tabSelectedTextColor="#FFFFFF"
-        android:background="@android:color/transparent"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="8dp" />
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/daysTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill"
+            app:tabTextAppearance="@style/TabTextAppearance"
+            app:tabPaddingStart="0dp"
+            app:tabPaddingEnd="0dp"
+            app:tabIndicatorHeight="0dp"
+            app:tabSelectedTextColor="#FFFFFF"
+            android:background="@android:color/transparent"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/schedule_tabs_description" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scheduleRecyclerView"

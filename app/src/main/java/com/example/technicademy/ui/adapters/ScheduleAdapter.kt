@@ -1,10 +1,10 @@
 package com.example.technicademy.ui.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.graphics.toColorInt
 import androidx.recyclerview.widget.RecyclerView
 import com.example.technicademy.R
 import com.example.technicademy.data.model.TrainingSession
@@ -40,7 +40,7 @@ class ScheduleAdapter(private val sessions: List<TrainingSession>) :
             "חמישי" -> 4
             else -> 0
         }
-        holder.sideBar.setBackgroundColor(Color.parseColor(colors[dayIndex]))
+        holder.sideBar.setBackgroundColor(colors[dayIndex].toColorInt())
     }
 
     override fun getItemCount() = sessions.size

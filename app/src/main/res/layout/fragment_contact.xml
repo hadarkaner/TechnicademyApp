@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="פרטי התקשרות"
+            android:text="@string/contact_title"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#000000"
@@ -27,7 +27,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="שעות פתיחת האקדמיה:"
+            android:text="@string/contact_opening_hours_label"
             android:textSize="18sp"
             android:textStyle="bold"
             android:gravity="right"
@@ -37,7 +37,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="ראשון-חמישי: 16:30-21:30"
+            android:text="@string/contact_opening_hours_value"
             android:textSize="16sp"
             android:gravity="right"
             android:layout_marginBottom="20dp"
@@ -55,12 +55,14 @@
                 android:layout_height="22dp"
                 android:src="@android:drawable/ic_menu_call"
                 app:tint="#444444"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="053-3404212"
+                android:text="@string/contact_phone_value"
                 android:textSize="16sp"
                 android:textColor="#333333"/>
         </LinearLayout>
@@ -77,12 +79,14 @@
                 android:layout_height="22dp"
                 android:src="@android:drawable/ic_dialog_email"
                 app:tint="#444444"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="dorinbaruch16@gmail.com"
+                android:text="@string/contact_email_value"
                 android:textSize="16sp"
                 android:textColor="#333333"/>
         </LinearLayout>
@@ -99,12 +103,14 @@
                 android:layout_height="22dp"
                 android:src="@android:drawable/ic_dialog_map"
                 app:tint="#444444"
-                android:layout_marginEnd="8dp"/>
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@null"
+                android:importantForAccessibility="no" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="פארק הדגים, מודיעין"
+                android:text="@string/contact_address_value"
                 android:textSize="16sp"
                 android:textColor="#333333"/>
         </LinearLayout>
@@ -113,7 +119,8 @@
             android:id="@+id/map_view"
             android:layout_width="match_parent"
             android:layout_height="280dp"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="24dp"
+            android:contentDescription="@string/contact_map_description" />
 
     </LinearLayout>
 </ScrollView>
