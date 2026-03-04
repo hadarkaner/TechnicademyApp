@@ -114,9 +114,9 @@ com.example.technicademy/
 
 <div align="right" dir="rtl">
 
-| **מסך הבית** | **התחברות** | **הרשמה** |
-|:---:|:---:|:---:|
-| <img src="screenshots/home.jpg" width="250"/> | <img src="screenshots/login.jpg" width="250"/> | <img src="screenshots/register.jpg" width="250"/> |
+| **מסך הבית** | **התחברות** |                     **הרשמה**                     |
+|:---:|:---:|:-------------------------------------------------:|
+| <img src="screenshots/home.jpg" width="250"/> | <img src="screenshots/login.jpg" width="250"/> | <img src="screenshots/register.png" width="250"/> |
 
 <br/>
 
