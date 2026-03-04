@@ -110,17 +110,17 @@ com.example.technicademy/
 
 ---
 
-## 📸 Screenshots
+## 📸 צילומי מסך
 
-<div align="center">
+<div align="right" dir="rtl">
 
-| **Home** | **Login** | **Register** |
+| **מסך הבית** | **התחברות** | **הרשמה** |
 |:---:|:---:|:---:|
 | <img src="screenshots/home.jpg" width="250"/> | <img src="screenshots/login.jpg" width="250"/> | <img src="screenshots/register.jpg" width="250"/> |
 
 <br/>
 
-| **Profile** | **Contact** | **Schedule** |
+| **פרופיל** | **צור קשר** | **מערכת שעות** |
 |:---:|:---:|:---:|
 | <img src="screenshots/profile.jpg" width="250"/> | <img src="screenshots/contact.jpg" width="250"/> | <img src="screenshots/schedule.jpg" width="250"/> |
 
