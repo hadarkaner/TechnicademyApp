@@ -112,8 +112,6 @@ com.example.technicademy/
 
 ## 📸 Screenshots
 
-## 📸 Screenshots
-
 <div align="center">
 
 | **Home** | **Login** | **Register** |
