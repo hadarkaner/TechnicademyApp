@@ -113,15 +113,27 @@ com.example.technicademy/
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="screenshots/login.jpg" width="250"/>
   <img src="screenshots/home.jpg" width="250"/>
-  <img src="screenshots/profile.jpg" width="250"/>
+  <img src="screenshots/login.jpg" width="250"/>
+  <img src="screenshots/register.jpg" width="250"/>
 </p>
 
 <p align="center">
-  <img src="screenshots/schedule.jpg" width="250"/>
-  <img src="screenshots/register.jpg" width="250"/>
+  <b>Home</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Login</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Register</b>
+</p>
+
+<p align="center">
+  <img src="screenshots/profile.jpg" width="250"/>
   <img src="screenshots/contact.jpg" width="250"/>
+  <img src="screenshots/schedule.jpg" width="250"/>
+</p>
+
+<p align="center">
+  <b>Profile</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Contact</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <b>Schedule</b>
 </p>
 
 ---
