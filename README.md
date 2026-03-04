@@ -11,7 +11,6 @@
 - **דף הבית** – מודעות כלליות מהאקדמיה.
 - **הרשמה ותשלום** – טופס הרשמה לחוג, בחירת יום אימון, סיכום ומחיר.
 - **מערכת שעות** – טאבים לפי ימים, רשימת שיעורים וצבעים לפי קבוצה.
-- **חגים** – אינטגרציה עם Hebcal API להצגת חגים בעברית.
 - **צור קשר** – מפה עם מיקום האימונים (פארק הדגים, מודיעין).
 - **פרופיל** – פרטי משתמש, החוגים שלי, תמונת פרופיל, פרסום מודעות (למנהל).
 
@@ -39,10 +38,9 @@
 - **מודעות ממוקדות** – למנהל: שליחה לחוג ויום מסוים (רק לנרשמים).
 - שמירה מקומית (JSON + SharedPreferences).
 
-#### 🗓️ מערכת שעות וחגים
+#### 🗓️ מערכת שעות
 
 - **טאבים** לפי ימים (ראשון–חמישי) עם רשימת שיעורים וצבעים.
-- **לוח חגים** – שליפה מ-**Hebcal API** (Retrofit + Gson) והצגה ב-RecyclerView.
 
 #### 👤 פרופיל ומנהל
 
@@ -114,8 +112,35 @@ com.example.technicademy/
 
 ## 📸 Screenshots
 
- להוסיף צילומי מסך.
+<p align="center">
+  <img src="screenshots/home.jpg" width="250"/><br/>
+  <b>Home Screen</b>
+</p>
 
+<p align="center">
+  <img src="screenshots/login.jpg" width="250"/><br/>
+  <b>Login Screen</b>
+</p>
+
+<p align="center">
+  <img src="screenshots/register.jpg" width="250"/><br/>
+  <b>Register Screen</b>
+</p>
+
+<p align="center">
+  <img src="screenshots/profile.jpg" width="250"/><br/>
+  <b>Profile Screen</b>
+</p>
+
+<p align="center">
+  <img src="screenshots/contact.jpg" width="250"/><br/>
+  <b>Contact Screen</b>
+</p>
+
+<p align="center">
+  <img src="screenshots/schedule.jpg" width="250"/><br/>
+  <b>Schedule Screen</b>
+</p>
 ---
 
 
