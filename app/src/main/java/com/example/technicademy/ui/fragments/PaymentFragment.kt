@@ -40,17 +40,23 @@ class PaymentFragment : Fragment(R.layout.fragment_payment) {
                 val key = "$selectedClass|$selectedDay"
                 val existingKeys = prefs.getUserCourseKeys(requireContext(), userKey)
                 val keysList = existingKeys.split('\n').map { it.trim() }.filter { it.isNotEmpty() }
-                if (!keysList.contains(key)) {
-                    prefs.setUserCourseKeys(requireContext(), userKey, (keysList + key).joinToString("\n"))
-                    val existingDetails = prefs.getUserCoursesDetails(requireContext(), userKey)
-                    val newEntry = buildString {
-                        append("חוג: $selectedClass\n")
-                        if (timesText.isNotBlank()) append("שעות: $timesText\n")
-                        append("יום: $selectedDay")
-                    }
-                    val newDetails = if (existingDetails.isBlank()) newEntry else existingDetails + "\n\n" + newEntry
-                    prefs.setUserCoursesDetails(requireContext(), userKey, newDetails)
+                val updatedKeys = if (keysList.contains(key)) keysList else keysList + key
+                prefs.setUserCourseKeys(requireContext(), userKey, updatedKeys.joinToString("\n"))
+
+                val newEntry = buildString {
+                    append("חוג: $selectedClass\n")
+                    if (timesText.isNotBlank()) append("שעות: $timesText\n")
+                    append("יום: $selectedDay")
                 }
+                val storedDetails = prefs.getStoredCoursesDetailsOnly(requireContext(), userKey)
+                val newDetails = if (storedDetails.isBlank()) {
+                    newEntry
+                } else if (storedDetails.contains(newEntry)) {
+                    storedDetails
+                } else {
+                    "$storedDetails\n\n$newEntry"
+                }
+                prefs.setUserCoursesDetails(requireContext(), userKey, newDetails)
             }
             val dialog = Dialog(requireContext())
             dialog.setContentView(R.layout.dialog_success)

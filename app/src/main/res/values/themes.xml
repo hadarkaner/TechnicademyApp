@@ -6,14 +6,15 @@
         <!-- שינוי הפס הסגול ללבן -->
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorPrimaryContainer">@android:color/white</item>
-        <item name="colorSurface">@android:color/white</item>
+        <item name="colorSurface">@color/white</item>
 
         <!-- סימון הטאב הנבחר בניווט התחתון – אפור (לא סגול) -->
         <item name="colorSecondaryContainer">#E8E8E8</item>
 
-        <!-- שינוי ה-Status Bar -->
+        <!-- רקע לבן למסכים, סרגל סטטוס וניווט -->
         <item name="android:statusBarColor">@android:color/white</item>
         <item name="android:navigationBarColor">@android:color/white</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
     <style name="Theme.Technicademy" parent="Base.Theme.Technicademy" />

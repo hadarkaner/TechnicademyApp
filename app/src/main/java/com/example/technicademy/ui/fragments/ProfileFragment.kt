@@ -25,11 +25,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.technicademy.R
 import com.example.technicademy.data.model.Announcement
+import com.example.technicademy.data.model.CourseCancellationRequest
 import com.example.technicademy.data.repository.AnnouncementStorage
+import com.example.technicademy.data.repository.CancellationRequestStorage
 import com.example.technicademy.data.ScheduleData
 import com.example.technicademy.service.UserPreferencesServiceImpl
 import com.example.technicademy.ui.MainActivity
 import com.example.technicademy.ui.adapters.AnnouncementAdapter
+import com.example.technicademy.ui.adapters.CancellationRequestAdapter
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -156,12 +159,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
             view.findViewById<Button>(R.id.btn_reset_registrations).setOnClickListener {
                 UserPreferencesServiceImpl.clearAllRegistrations(requireContext())
+                UserPreferencesServiceImpl.clearUserCourses(requireContext(), userKey)
                 Toast.makeText(requireContext(), "כל ההרשמות אופסו. אפשר להתחיל הרשמות מחדש", Toast.LENGTH_LONG).show()
                 val newName = prefs.getUserName(requireContext(), userKey)
                 val newDisplay = newName.takeIf { it != "אורח" } ?: username ?: "אורח"
-                val newCourses = prefs.getUserCoursesDetails(requireContext(), userKey)
                 view.findViewById<TextView>(R.id.tv_profile_name).text = "שלום, $newDisplay"
-                view.findViewById<TextView>(R.id.tv_my_course).text = newCourses
+                view.findViewById<TextView>(R.id.tv_my_course).text =
+                    UserPreferencesServiceImpl.NO_COURSE_REGISTERED
+                loadAcademyAnnouncements(view)
             }
             spinnerManagerClass.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, managerClasses)
             spinnerManagerClass.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -221,6 +226,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         loadMyAnnouncements(view, currentUserEmail)
         loadAcademyAnnouncements(view)
 
+        setupCancellationUi(view, userKey, currentUserEmail, displayName, isManager)
+        if (isManager) {
+            setupManagerCancellationRequests(view)
+        }
+
         view.findViewById<Button>(R.id.btn_logout).setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             GoogleSignIn.getClient(requireActivity(), GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build()).signOut()
@@ -239,10 +249,124 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onResume() {
         super.onResume()
         view?.let { v ->
-            if ((auth.currentUser?.email ?: "").isNotBlank()) {
-                loadMyAnnouncements(v, auth.currentUser?.email ?: "")
+            val userKey = LoginFragment.getCurrentUserKey(requireContext())
+            val email = auth.currentUser?.email?.takeIf { it.isNotBlank() } ?: ""
+            val isManager = email == managerEmail
+            v.findViewById<TextView>(R.id.tv_my_course).text =
+                UserPreferencesServiceImpl.getUserCoursesDetails(requireContext(), userKey)
+            if (email.isNotBlank()) {
+                loadMyAnnouncements(v, email)
                 loadAcademyAnnouncements(v)
             }
+            if (!isManager) {
+                refreshCancellationSection(v, userKey, email)
+            } else {
+                loadManagerCancellationRequests(v)
+            }
+        }
+    }
+
+    private fun setupCancellationUi(
+        view: View,
+        userKey: String,
+        userEmail: String,
+        displayName: String,
+        isManager: Boolean
+    ) {
+        val cancelLayout = view.findViewById<View>(R.id.cancel_course_layout)
+        if (isManager) {
+            cancelLayout.isVisible = false
+            return
+        }
+        refreshCancellationSection(view, userKey, userEmail)
+        view.findViewById<Button>(R.id.btn_request_cancellation).setOnClickListener {
+            submitCancellationRequest(view, userKey, userEmail, displayName)
+        }
+    }
+
+    private fun refreshCancellationSection(view: View, userKey: String, userEmail: String) {
+        val cancelLayout = view.findViewById<View>(R.id.cancel_course_layout)
+        val spinner = view.findViewById<Spinner>(R.id.spinner_cancel_course)
+        val statusTv = view.findViewById<TextView>(R.id.tv_cancellation_status)
+        val courses = UserPreferencesServiceImpl.getUserCoursesDetails(requireContext(), userKey)
+        val hasCourses = courses != UserPreferencesServiceImpl.NO_COURSE_REGISTERED
+        cancelLayout.isVisible = hasCourses
+        if (!hasCourses) return
+
+        val options = UserPreferencesServiceImpl.getUserCourseOptions(requireContext(), userKey)
+        if (options.isEmpty()) {
+            cancelLayout.isVisible = false
+            return
+        }
+
+        val labels = listOf(getString(R.string.cancel_course_placeholder)) + options.map { it.second }
+        spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, labels)
+
+        val pending = CancellationRequestStorage.getByUserEmail(requireContext(), userEmail)
+            .filter { it.isPending() }
+        if (pending.isNotEmpty()) {
+            statusTv.isVisible = true
+            statusTv.text = pending.joinToString("\n") { req ->
+                getString(R.string.cancellation_status_pending, req.courseDisplay)
+            }
+        } else {
+            statusTv.isVisible = false
+        }
+    }
+
+    private fun submitCancellationRequest(
+        view: View,
+        userKey: String,
+        userEmail: String,
+        displayName: String
+    ) {
+        val spinner = view.findViewById<Spinner>(R.id.spinner_cancel_course)
+        if (spinner.selectedItemPosition <= 0) {
+            Toast.makeText(requireContext(), R.string.cancellation_select_course, Toast.LENGTH_SHORT).show()
+            return
+        }
+        val options = UserPreferencesServiceImpl.getUserCourseOptions(requireContext(), userKey)
+        if (options.isEmpty()) {
+            Toast.makeText(requireContext(), R.string.cancellation_no_courses, Toast.LENGTH_SHORT).show()
+            return
+        }
+        val (courseKey, courseDisplay) = options[spinner.selectedItemPosition - 1]
+        if (CancellationRequestStorage.hasPendingForCourse(requireContext(), userEmail, courseKey)) {
+            Toast.makeText(requireContext(), R.string.cancellation_already_pending, Toast.LENGTH_SHORT).show()
+            return
+        }
+        CancellationRequestStorage.add(
+            requireContext(),
+            CourseCancellationRequest(
+                userKey = userKey,
+                userEmail = userEmail,
+                userDisplayName = displayName,
+                courseKey = courseKey,
+                courseDisplay = courseDisplay
+            )
+        )
+        Toast.makeText(requireContext(), R.string.cancellation_request_sent, Toast.LENGTH_LONG).show()
+        refreshCancellationSection(view, userKey, userEmail)
+    }
+
+    private fun setupManagerCancellationRequests(view: View) {
+        view.findViewById<TextView>(R.id.tv_manager_cancellation_title).isVisible = true
+        val rv = view.findViewById<RecyclerView>(R.id.rv_cancellation_requests)
+        rv.isVisible = true
+        rv.layoutManager = LinearLayoutManager(requireContext())
+        loadManagerCancellationRequests(view)
+    }
+
+    private fun loadManagerCancellationRequests(view: View) {
+        val rv = view.findViewById<RecyclerView>(R.id.rv_cancellation_requests)
+        val title = view.findViewById<TextView>(R.id.tv_manager_cancellation_title)
+        val pending = CancellationRequestStorage.getPending(requireContext())
+        title.isVisible = pending.isNotEmpty()
+        rv.isVisible = pending.isNotEmpty()
+        rv.adapter = CancellationRequestAdapter(pending) { request ->
+            CancellationRequestStorage.approve(requireContext(), request)
+            Toast.makeText(requireContext(), R.string.cancellation_approved, Toast.LENGTH_SHORT).show()
+            loadManagerCancellationRequests(view)
         }
     }
 

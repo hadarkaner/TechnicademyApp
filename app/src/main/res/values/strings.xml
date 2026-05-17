@@ -4,6 +4,7 @@
     <string name="default_web_client_id" translatable="false">339004219726-vc0hj3qjh70mbug2vjg0c84k8f15be3j.apps.googleusercontent.com</string>
 
     <!-- Login -->
+    <string name="login_logo_description">לוגו Technicademy</string>
     <string name="login_title">התחברות</string>
     <string name="hint_email">הכנסי אימייל</string>
     <string name="label_email">אימייל</string>
@@ -77,6 +78,20 @@
     <string name="schedule_description">כאן תוכלו למצוא את כל זמני האימונים לכל קבוצות הגיל. בחרו את הקבוצה המתאימה והצטרפו אלינו!</string>
     <string name="schedule_icon_description">אייקון לוח שנה עבור מערכת השעות</string>
     <string name="schedule_tabs_description">בחירת יום אימון להצגת מערכת השעות</string>
+
+    <!-- Profile – ביטול חוג -->
+    <string name="cancel_course_title">בקשת ביטול חוג</string>
+    <string name="cancel_course_hint">בחרי חוג לביטול. הבקשה תועבר למנהל לאישור.</string>
+    <string name="cancel_course_placeholder">בחרי חוג</string>
+    <string name="btn_request_cancellation">שלחי בקשת ביטול</string>
+    <string name="cancellation_request_sent">הבקשה נשלחה. ממתינה לאישור המנהל</string>
+    <string name="cancellation_already_pending">כבר קיימת בקשה ממתינה לחוג זה</string>
+    <string name="cancellation_select_course">נא לבחור חוג לביטול</string>
+    <string name="cancellation_no_courses">אין חוגים פעילים לביטול</string>
+    <string name="cancellation_status_pending">בקשת ביטול ממתינה: %1$s</string>
+    <string name="manager_cancellation_title">בקשות ביטול ממתינות</string>
+    <string name="btn_approve_cancellation">אשר ביטול</string>
+    <string name="cancellation_approved">הביטול אושר והחוג הוסר</string>
 
     <style name="BottomNavText">
         <item name="android:textSize">10sp</item>
