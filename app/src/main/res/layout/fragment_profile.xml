@@ -3,20 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FA">
+    android:background="#F8F9FA"
+    android:layoutDirection="rtl">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="20dp"
-        android:gravity="center_horizontal">
+        android:layoutDirection="rtl">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:cardCornerRadius="15dp"
             app:cardElevation="4dp"
+            android:layout_marginTop="0dp"
             android:layout_marginBottom="20dp">
 
             <LinearLayout
@@ -24,6 +26,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="15dp"
+                android:paddingTop="22dp"
                 android:gravity="center">
 
                 <ImageView
@@ -66,15 +69,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="15dp"
+                android:layoutDirection="rtl">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="החוגים שלי"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="@color/black"
+                    android:textAlignment="viewStart"
+                    android:gravity="start"
                     android:layout_marginBottom="10dp"/>
 
                 <View
@@ -85,11 +91,14 @@
 
                 <TextView
                     android:id="@+id/tv_my_course"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="טרם נרשמת לחוג"
                     android:textSize="16sp"
-                    android:textColor="#444444"/>
+                    android:textColor="#444444"
+                    android:textAlignment="viewStart"
+                    android:gravity="start|top"
+                    android:textDirection="rtl" />
 
                 <LinearLayout
                     android:id="@+id/cancel_course_layout"
@@ -112,6 +121,8 @@
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:textColor="#000000"
+                        android:textAlignment="viewStart"
+                        android:gravity="start"
                         android:layout_marginBottom="6dp"/>
 
                     <TextView
@@ -120,6 +131,8 @@
                         android:text="@string/cancel_course_hint"
                         android:textSize="13sp"
                         android:textColor="#666666"
+                        android:textAlignment="viewStart"
+                        android:gravity="start"
                         android:layout_marginBottom="10dp"/>
 
                     <Spinner
@@ -137,6 +150,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="13sp"
                         android:textColor="#E65100"
+                        android:textAlignment="viewStart"
+                        android:gravity="start"
                         android:visibility="gone"
                         android:layout_marginBottom="10dp"/>
 
@@ -155,12 +170,14 @@
 
         <TextView
             android:id="@+id/tv_manager_cancellation_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/manager_cancellation_title"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#000000"
+            android:textAlignment="viewStart"
+            android:gravity="start"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="8dp"
             android:visibility="gone"/>
@@ -183,15 +200,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="15dp">
+                android:padding="15dp"
+                android:layoutDirection="rtl">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="פרסם מודעה"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:textColor="#000000"
+                    android:textAlignment="viewStart"
+                    android:gravity="start"
                     android:layout_marginBottom="10dp"/>
 
                 <LinearLayout
@@ -203,11 +223,13 @@
                     android:layout_marginBottom="10dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="שליחה לחוג ויום ובשעה (רק מנהל)"
                         android:textSize="14sp"
                         android:textColor="#666666"
+                        android:textAlignment="viewStart"
+                        android:gravity="start"
                         android:layout_marginBottom="6dp"/>
 
                     <Spinner
@@ -245,6 +267,8 @@
                     android:hint="תוכן המודעה"
                     android:inputType="textMultiLine"
                     android:gravity="top|start"
+                    android:textAlignment="viewStart"
+                    android:textDirection="rtl"
                     android:paddingHorizontal="14dp"
                     android:paddingVertical="10dp"
                     android:textSize="14sp"
@@ -264,12 +288,14 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="הודעות מהאקדמיה (לחוג שלי)"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#000000"
+            android:textAlignment="viewStart"
+            android:gravity="start"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="8dp"/>
 
@@ -282,12 +308,14 @@
             android:layout_marginBottom="8dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="המודעות שלי"
             android:textStyle="bold"
             android:textSize="16sp"
             android:textColor="#000000"
+            android:textAlignment="viewStart"
+            android:gravity="start"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="8dp"/>
 

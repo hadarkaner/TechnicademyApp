@@ -1,5 +1,6 @@
 package com.example.technicademy.ui.adapters
 
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -48,6 +49,11 @@ class AnnouncementAdapter(
         } else {
             holder.target.visibility = View.GONE
         }
+        val centerOnHome = mode == Mode.HOME
+        listOf(holder.title, holder.target, holder.body).forEach { tv ->
+            applyTextAlignment(tv, centerOnHome)
+        }
+
         when (mode) {
             Mode.HOME -> {
                 holder.status.visibility = View.GONE
@@ -67,4 +73,14 @@ class AnnouncementAdapter(
     }
 
     override fun getItemCount() = items.size
+
+    private fun applyTextAlignment(textView: TextView, centered: Boolean) {
+        if (centered) {
+            textView.gravity = Gravity.CENTER
+            textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
+        } else {
+            textView.gravity = Gravity.START
+            textView.textAlignment = View.TEXT_ALIGNMENT_VIEW_START
+        }
+    }
 }

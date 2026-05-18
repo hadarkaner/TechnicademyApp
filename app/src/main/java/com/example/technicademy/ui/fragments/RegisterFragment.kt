@@ -31,12 +31,12 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             "קבוצת ליגה" to listOf("שני", "שלישי", "חמישי"),
             "קבוצת בוגרים" to listOf("ראשון", "שלישי")
         )
-        val classAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, classes)
+        val classAdapter = ArrayAdapter(requireContext(), R.layout.spinner_item_hebrew, classes)
         spinnerClass.adapter = classAdapter
         fun updateDaysSpinnerForClass(selectedClass: String?) {
             val days = classToDays[selectedClass] ?: emptyList()
             val daysWithPlaceholder = listOf("בחר יום אימון") + days
-            spinnerDay.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, daysWithPlaceholder)
+            spinnerDay.adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_hebrew, daysWithPlaceholder)
         }
         spinnerClass.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {

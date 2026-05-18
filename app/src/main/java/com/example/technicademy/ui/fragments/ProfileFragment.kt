@@ -275,17 +275,17 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     UserPreferencesServiceImpl.NO_COURSE_REGISTERED
                 loadAcademyAnnouncements(view)
             }
-            spinnerManagerClass.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, managerClasses)
+            spinnerManagerClass.adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_hebrew, managerClasses)
             spinnerManagerClass.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
                     val cl = if (position > 0) managerClasses[position] else null
                     val days = (cl?.let { classToDays[it] } ?: emptyList()).let { listOf("בחר יום") + it }
-                    spinnerManagerDay.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, days)
+                    spinnerManagerDay.adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_hebrew, days)
                     updateTimeSpinner(spinnerManagerTime, cl, null)
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-            spinnerManagerDay.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, listOf("בחר יום"))
+            spinnerManagerDay.adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_hebrew, listOf("בחר יום"))
             spinnerManagerDay.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, v: View?, position: Int, id: Long) {
                     val cl = if (spinnerManagerClass.selectedItemPosition > 0) managerClasses[spinnerManagerClass.selectedItemPosition] else null
@@ -294,7 +294,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 }
                 override fun onNothingSelected(parent: AdapterView<*>?) {}
             }
-            spinnerManagerTime.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, listOf("בחר שעה"))
+            spinnerManagerTime.adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_hebrew, listOf("בחר שעה"))
         }
 
         btnPublish.setOnClickListener {
@@ -354,7 +354,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val times = if (className != null && day != null) {
             ScheduleData.allSessions.filter { it.className == className && it.day == day }.map { it.time }.distinct()
         } else emptyList()
-        spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, listOf("בחר שעה") + times)
+        spinner.adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_hebrew, listOf("בחר שעה") + times)
     }
 
     override fun onResume() {
@@ -416,7 +416,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }
 
         val labels = listOf(getString(R.string.cancel_course_placeholder)) + options.map { it.second }
-        spinner.adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, labels)
+        spinner.adapter = ArrayAdapter(requireContext(), R.layout.spinner_item_hebrew, labels)
 
         val pending = CancellationRequestStorage.getByUserEmail(requireContext(), userEmail)
             .filter { it.isPending() }

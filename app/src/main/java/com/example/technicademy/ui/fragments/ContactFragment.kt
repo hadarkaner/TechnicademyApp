@@ -1,15 +1,18 @@
 package com.example.technicademy.ui.fragments
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import com.example.technicademy.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.technicademy.R
+import java.util.Locale
 
 class ContactFragment : Fragment(R.layout.fragment_contact), OnMapReadyCallback {
 
@@ -17,9 +20,41 @@ class ContactFragment : Fragment(R.layout.fragment_contact), OnMapReadyCallback 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        applyContactRowAlignment(view)
         mapView = view.findViewById(R.id.map_view)
         mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync(this)
+    }
+
+    /**
+     * עברית (RTL): שורות צמודות להתחלה (ימין).
+     * אנגלית (LTR): שורות צמודות לסוף (ימין).
+     */
+    private fun applyContactRowAlignment(view: View) {
+        val isHebrew = Locale.getDefault().language == "he" ||
+            resources.configuration.locales[0]?.language == "he"
+
+        val rowGravity = if (isHebrew) {
+            Gravity.START or Gravity.CENTER_VERTICAL
+        } else {
+            Gravity.END or Gravity.CENTER_VERTICAL
+        }
+        val rowDirection = if (isHebrew) {
+            View.LAYOUT_DIRECTION_RTL
+        } else {
+            View.LAYOUT_DIRECTION_LTR
+        }
+
+        listOf(
+            R.id.contact_row_phone,
+            R.id.contact_row_email,
+            R.id.contact_row_address
+        ).forEach { id ->
+            view.findViewById<LinearLayout>(id)?.apply {
+                layoutDirection = rowDirection
+                gravity = rowGravity
+            }
+        }
     }
 
     override fun onMapReady(googleMap: GoogleMap) {

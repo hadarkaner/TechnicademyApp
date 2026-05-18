@@ -11,12 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:layoutDirection="rtl">
 
         <TextView
             android:id="@+id/tv_announcement_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textAlignment="viewStart"
+            android:gravity="start"
             android:visibility="gone"/>
 
         <TextView
@@ -25,6 +28,8 @@
             android:layout_height="wrap_content"
             android:textSize="12sp"
             android:textColor="#666666"
+            android:textAlignment="viewStart"
+            android:gravity="start"
             android:visibility="gone"/>
 
         <TextView
@@ -33,6 +38,8 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="#444444"
+            android:textAlignment="viewStart"
+            android:gravity="start"
             android:layout_marginTop="6dp"/>
 
         <TextView

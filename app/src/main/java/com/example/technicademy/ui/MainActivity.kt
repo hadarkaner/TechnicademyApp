@@ -20,7 +20,6 @@ import com.example.technicademy.ui.fragments.ProfileFragment
 import com.example.technicademy.ui.fragments.RegisterFragment
 import com.example.technicademy.ui.fragments.ScheduleFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.firebase.auth.FirebaseAuth
 
 /**
@@ -29,7 +28,6 @@ import com.google.firebase.auth.FirebaseAuth
  */
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var bottomAppBar: BottomAppBar
     private lateinit var bottomNav: BottomNavigationView
     private lateinit var fragmentContainer: FrameLayout
 
@@ -38,13 +36,17 @@ class MainActivity : AppCompatActivity() {
         resetAllCourseRegistrationsOnceIfNeeded()
         setContentView(R.layout.activity_main)
 
-        WindowCompat.setDecorFitsSystemWindows(window, true)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         window.statusBarColor = ContextCompat.getColor(this, R.color.white)
         window.navigationBarColor = ContextCompat.getColor(this, R.color.white)
 
-        bottomAppBar = findViewById(R.id.bottomAppBar)
         bottomNav = findViewById(R.id.bottom_navigation)
         fragmentContainer = findViewById(R.id.fragment_container)
+        WindowInsetsHelper.applyMainScreenInsets(
+            fragmentContainer = fragmentContainer,
+            bottomBar = bottomNav,
+            onBottomBarHeightChanged = { height -> setFragmentContainerBottomMargin(height) }
+        )
 
         // צבעי הניווט התחתון – הטאב הנבחר באפור (לא סגול)
         val navColors = ContextCompat.getColorStateList(this, R.color.bottom_nav_item_color)
@@ -85,7 +87,7 @@ class MainActivity : AppCompatActivity() {
 
     /** מעבר למסך התחברות – מסתיר את הניווט התחתון ומציג LoginFragment */
     fun showLoginScreen() {
-        bottomAppBar.visibility = View.GONE
+        bottomNav.visibility = View.GONE
         setFragmentContainerBottomMargin(0)
         supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
         supportFragmentManager.beginTransaction()
@@ -95,8 +97,11 @@ class MainActivity : AppCompatActivity() {
 
     /** אחרי התחברות/הרשמה – הצגת הניווט והמעבר לאזור האישי (פרופיל) */
     fun showMainContent() {
-        bottomAppBar.visibility = View.VISIBLE
-        setFragmentContainerBottomMargin(resources.getDimensionPixelSize(R.dimen.bottom_bar_reserve_height))
+        bottomNav.visibility = View.VISIBLE
+        bottomNav.post {
+            val params = bottomNav.layoutParams as CoordinatorLayout.LayoutParams
+            setFragmentContainerBottomMargin(bottomNav.height + params.bottomMargin)
+        }
         supportFragmentManager.popBackStack(null, androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE)
         bottomNav.selectedItemId = R.id.nav_profile
         replaceFragment(ProfileFragment())

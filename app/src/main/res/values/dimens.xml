@@ -8,4 +8,6 @@
     <dimen name="login_field_spacing">12dp</dimen>
     <dimen name="login_label_spacing">6dp</dimen>
     <dimen name="bottom_bar_reserve_height">60dp</dimen>
+    <dimen name="status_bar_content_gap">10dp</dimen>
+    <dimen name="status_bar_fallback_top">48dp</dimen>
 </resources>
