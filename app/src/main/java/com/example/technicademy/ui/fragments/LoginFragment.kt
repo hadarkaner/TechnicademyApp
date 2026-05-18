@@ -14,6 +14,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import com.example.technicademy.R
+import com.example.technicademy.data.repository.FirestoreUserRepository
 import com.example.technicademy.service.UserPreferencesServiceImpl
 import com.example.technicademy.ui.MainActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -132,7 +133,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val user = auth.currentUser ?: return
         val identifier = user.email ?: user.uid
         UserPreferencesServiceImpl.setCurrentUser(requireContext(), identifier)
-        (activity as? MainActivity)?.showMainContent()
+        FirestoreUserRepository.syncFromFirestore(requireContext(), identifier) {
+            if (!isAdded) return@syncFromFirestore
+            (activity as? MainActivity)?.showMainContent()
+        }
     }
 
     @Suppress("unused")

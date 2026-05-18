@@ -3,6 +3,7 @@ package com.example.technicademy.service
 import android.content.Context
 import androidx.core.content.edit
 import com.example.technicademy.data.ScheduleData
+import com.example.technicademy.data.repository.FirestoreUserRepository
 import com.google.firebase.auth.FirebaseAuth
 
 /**
@@ -41,6 +42,7 @@ object UserPreferencesServiceImpl : UserPreferencesService {
     override fun setUserName(context: Context, userKey: String, name: String) {
         val suffix = if (userKey.isNotBlank()) "_$userKey" else ""
         prefs(context).edit { putString("user_name$suffix", name) }
+        FirestoreUserRepository.saveUserProfile(userKey = userKey, userName = name)
     }
 
     override fun getUserCourseKeys(context: Context, userKey: String): String {
@@ -54,6 +56,7 @@ object UserPreferencesServiceImpl : UserPreferencesService {
     override fun setUserCourseKeys(context: Context, userKey: String, keys: String) {
         val suffix = if (userKey.isNotBlank()) "_$userKey" else ""
         prefs(context).edit { putString("user_course_keys$suffix", keys) }
+        FirestoreUserRepository.saveUserProfile(userKey = userKey, courseKeys = keys)
     }
 
     override fun getUserCoursesDetails(context: Context, userKey: String): String {
@@ -108,6 +111,7 @@ object UserPreferencesServiceImpl : UserPreferencesService {
     override fun setUserCoursesDetails(context: Context, userKey: String, details: String) {
         val suffix = if (userKey.isNotBlank()) "_$userKey" else ""
         prefs(context).edit { putString("user_courses_details$suffix", details) }
+        FirestoreUserRepository.saveUserProfile(userKey = userKey, coursesDetails = details)
     }
 
     override fun getProfileImagePath(context: Context, userKey: String): String? {
@@ -118,6 +122,9 @@ object UserPreferencesServiceImpl : UserPreferencesService {
     override fun setProfileImagePath(context: Context, userKey: String, path: String) {
         if (userKey.isBlank()) return
         prefs(context).edit { putString("user_profile_image_$userKey", path) }
+        if (path.startsWith("http")) {
+            FirestoreUserRepository.saveUserProfile(userKey = userKey, profileImageUrl = path)
+        }
     }
 
     override fun clearAllRegistrations(context: Context) {
@@ -181,12 +188,8 @@ object UserPreferencesServiceImpl : UserPreferencesService {
             }
             return
         }
-        prefs(context).edit {
-            remove("user_course_keys_$userKey")
-            remove("user_courses_details_$userKey")
-            putString("user_course_keys_$userKey", "")
-            putString("user_courses_details_$userKey", "")
-        }
+        setUserCourseKeys(context, userKey, "")
+        setUserCoursesDetails(context, userKey, "")
     }
 
     private fun isRegistrationPreferenceKey(key: String): Boolean =

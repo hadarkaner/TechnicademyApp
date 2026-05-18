@@ -22,12 +22,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val rvAnnouncements = view.findViewById<RecyclerView>(R.id.rv_announcements)
         val tvAnnouncementsTitle = view.findViewById<TextView>(R.id.tv_announcements_title)
         rvAnnouncements.layoutManager = LinearLayoutManager(requireContext())
-        val list = AnnouncementStorage.getGlobal(requireContext())
-        if (list.isNotEmpty()) {
-            tvAnnouncementsTitle.isVisible = true
-            rvAnnouncements.isVisible = true
-            rvAnnouncements.adapter = AnnouncementAdapter(list, AnnouncementAdapter.Mode.HOME)
-        }
+        showAnnouncements(rvAnnouncements, tvAnnouncementsTitle)
         view.findViewById<Button>(R.id.btn_whatsapp_home)?.setOnClickListener {
             val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
                 data = android.net.Uri.parse("https://wa.me/972501234567")
@@ -39,14 +34,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onResume() {
         super.onResume()
         view?.let { v ->
-            val rv = v.findViewById<RecyclerView>(R.id.rv_announcements)
-            val tv = v.findViewById<TextView>(R.id.tv_announcements_title)
-            val list = AnnouncementStorage.getGlobal(requireContext())
-            if (list.isNotEmpty()) {
-                tv.isVisible = true
-                rv.isVisible = true
-                rv.adapter = AnnouncementAdapter(list, AnnouncementAdapter.Mode.HOME)
-            }
+            showAnnouncements(
+                v.findViewById(R.id.rv_announcements),
+                v.findViewById(R.id.tv_announcements_title)
+            )
+        }
+    }
+
+    private fun showAnnouncements(rv: RecyclerView, title: TextView) {
+        val list = AnnouncementStorage.getGlobal(requireContext())
+        val hasItems = list.isNotEmpty()
+        title.isVisible = hasItems
+        rv.isVisible = hasItems
+        if (hasItems) {
+            rv.adapter = AnnouncementAdapter(list, AnnouncementAdapter.Mode.HOME)
         }
     }
 }

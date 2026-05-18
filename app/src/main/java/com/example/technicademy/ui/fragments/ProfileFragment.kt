@@ -28,7 +28,9 @@ import com.example.technicademy.data.model.Announcement
 import com.example.technicademy.data.model.CourseCancellationRequest
 import com.example.technicademy.data.repository.AnnouncementStorage
 import com.example.technicademy.data.repository.CancellationRequestStorage
+import com.example.technicademy.data.repository.FirestoreUserRepository
 import com.example.technicademy.data.ScheduleData
+import com.example.technicademy.service.ProfileImageStorageService
 import com.example.technicademy.service.UserPreferencesServiceImpl
 import com.example.technicademy.ui.MainActivity
 import com.example.technicademy.ui.adapters.AnnouncementAdapter
@@ -38,6 +40,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.auth.FirebaseAuth
 import java.io.File
 import java.io.FileOutputStream
+import java.net.URL
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
@@ -47,7 +50,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         uri ?: return@registerForActivityResult
         val userKey = LoginFragment.getCurrentUserKey(requireContext())
-        if (userKey.isBlank()) return@registerForActivityResult
+        val userId = auth.currentUser?.uid
+        if (userKey.isBlank() || userId.isNullOrBlank()) {
+            Toast.makeText(requireContext(), R.string.profile_upload_requires_login, Toast.LENGTH_SHORT).show()
+            return@registerForActivityResult
+        }
         val file = profileImageFile(requireContext(), userKey)
         try {
             requireContext().contentResolver.openInputStream(uri)?.use { input ->
@@ -59,10 +66,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             if (rotated != bitmap) bitmap.recycle()
             FileOutputStream(file).use { out -> rotated.compress(Bitmap.CompressFormat.JPEG, 90, out) }
             if (rotated != bitmap) rotated.recycle()
-            UserPreferencesServiceImpl.setProfileImagePath(requireContext(), userKey, file.absolutePath)
-            if (view != null) loadProfileImage(requireView())
+
+            Toast.makeText(requireContext(), R.string.profile_uploading, Toast.LENGTH_SHORT).show()
+            uploadProfileImageToFirebase(file, userKey, userId)
         } catch (_: Exception) {
-            Toast.makeText(requireContext(), "שגיאה בשמירת התמונה", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.profile_upload_failed, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -77,6 +85,54 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
+    private fun uploadProfileImageToFirebase(file: File, userKey: String, userId: String) {
+        val user = auth.currentUser
+        if (user == null) {
+            Toast.makeText(requireContext(), R.string.profile_upload_requires_login, Toast.LENGTH_SHORT).show()
+            return
+        }
+        user.getIdToken(true).addOnCompleteListener { tokenTask ->
+            if (!isAdded) return@addOnCompleteListener
+            if (!tokenTask.isSuccessful) {
+                showUploadError(Exception("בעיית התחברות. התחברי מחדש"))
+                saveProfileImageLocally(file, userKey)
+                return@addOnCompleteListener
+            }
+            ProfileImageStorageService.upload(
+                imageFile = file,
+                userId = userId,
+                onSuccess = { downloadUrl ->
+                    if (!isAdded) return@upload
+                    UserPreferencesServiceImpl.setProfileImagePath(requireContext(), userKey, downloadUrl)
+                    view?.let { loadProfileImage(it) }
+                    Toast.makeText(requireContext(), R.string.profile_upload_success, Toast.LENGTH_SHORT).show()
+                },
+                onFailure = { error ->
+                    if (!isAdded) return@upload
+                    showUploadError(error)
+                    saveProfileImageLocally(file, userKey)
+                }
+            )
+        }
+    }
+
+    private fun showUploadError(error: Exception) {
+        val message = ProfileImageStorageService.formatError(error)
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.profile_upload_failed, message),
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun saveProfileImageLocally(file: File, userKey: String) {
+        UserPreferencesServiceImpl.setProfileImagePath(requireContext(), userKey, file.absolutePath)
+        view?.let {
+            loadProfileImage(it)
+            Toast.makeText(requireContext(), R.string.profile_upload_saved_local, Toast.LENGTH_LONG).show()
+        }
+    }
+
     private fun profileImageFile(context: Context, userKey: String): File {
         val safe = userKey.replace(Regex("[^a-zA-Z0-9]"), "_")
         return File(context.filesDir, "profile_$safe.jpg")
@@ -85,15 +141,66 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun loadProfileImage(view: View) {
         val iv = view.findViewById<ImageView>(R.id.iv_profile_photo)
         val userKey = LoginFragment.getCurrentUserKey(requireContext())
-        val path = UserPreferencesServiceImpl.getProfileImagePath(view.context, userKey)
-        val file = path?.let { File(it) }
-        if (file != null && file.exists()) {
-            iv.setImageBitmap(BitmapFactory.decodeFile(file.absolutePath))
-            iv.imageTintList = null
-        } else {
-            iv.setImageResource(R.drawable.ic_profile)
-            iv.setColorFilter(0xFFb1baba.toInt())
+        val stored = UserPreferencesServiceImpl.getProfileImagePath(view.context, userKey)
+        when {
+            !stored.isNullOrBlank() && stored.startsWith("http") -> loadImageFromUrl(iv, stored)
+            !stored.isNullOrBlank() -> {
+                val file = File(stored)
+                if (file.exists()) {
+                    iv.setImageBitmap(BitmapFactory.decodeFile(file.absolutePath))
+                    iv.imageTintList = null
+                    applyCircularClip(iv)
+                } else {
+                    loadProfileImageFromFirebase(iv, userKey)
+                }
+            }
+            else -> loadProfileImageFromFirebase(iv, userKey)
         }
+    }
+
+    private fun loadProfileImageFromFirebase(iv: ImageView, userKey: String) {
+        val userId = auth.currentUser?.uid
+        if (userId.isNullOrBlank()) {
+            showDefaultProfileIcon(iv)
+            return
+        }
+        ProfileImageStorageService.fetchDownloadUrl(
+            userId = userId,
+            onSuccess = { url ->
+                if (!isAdded) return@fetchDownloadUrl
+                UserPreferencesServiceImpl.setProfileImagePath(requireContext(), userKey, url)
+                loadImageFromUrl(iv, url)
+            },
+            onFailure = { showDefaultProfileIcon(iv) }
+        )
+    }
+
+    private fun loadImageFromUrl(iv: ImageView, url: String) {
+        Thread {
+            try {
+                val bitmap = URL(url).openStream().use { BitmapFactory.decodeStream(it) }
+                if (bitmap != null && isAdded) {
+                    requireActivity().runOnUiThread {
+                        iv.setImageBitmap(bitmap)
+                        iv.imageTintList = null
+                        applyCircularClip(iv)
+                    }
+                } else if (isAdded) {
+                    requireActivity().runOnUiThread { showDefaultProfileIcon(iv) }
+                }
+            } catch (_: Exception) {
+                if (isAdded) requireActivity().runOnUiThread { showDefaultProfileIcon(iv) }
+            }
+        }.start()
+    }
+
+    private fun showDefaultProfileIcon(iv: ImageView) {
+        iv.setImageResource(R.drawable.ic_profile)
+        iv.setColorFilter(0xFFb1baba.toInt())
+        applyCircularClip(iv)
+    }
+
+    private fun applyCircularClip(iv: ImageView) {
         iv.post {
             iv.outlineProvider = object : ViewOutlineProvider() {
                 override fun getOutline(view: View, outline: Outline) {
@@ -218,7 +325,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             )
             AnnouncementStorage.add(requireContext(), announcement)
             etBody.text.clear()
-            Toast.makeText(requireContext(), if (targetCourseKey != null) "ההודעה נשלחה לנרשמים לחוג ויום שנבחרו" else "המודעה פורסמה לכולם", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                if (targetCourseKey != null) "ההודעה נשלחה לנרשמים לחוג ויום שנבחרו" else "המודעה פורסמה לכולם",
+                Toast.LENGTH_SHORT
+            ).show()
             loadMyAnnouncements(view, currentUserEmail)
             loadAcademyAnnouncements(view)
         }
@@ -252,6 +363,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val userKey = LoginFragment.getCurrentUserKey(requireContext())
             val email = auth.currentUser?.email?.takeIf { it.isNotBlank() } ?: ""
             val isManager = email == managerEmail
+            FirestoreUserRepository.syncFromFirestore(requireContext(), userKey) {
+                if (!isAdded) return@syncFromFirestore
+                v.findViewById<TextView>(R.id.tv_my_course).text =
+                    UserPreferencesServiceImpl.getUserCoursesDetails(requireContext(), userKey)
+            }
             v.findViewById<TextView>(R.id.tv_my_course).text =
                 UserPreferencesServiceImpl.getUserCoursesDetails(requireContext(), userKey)
             if (email.isNotBlank()) {
@@ -372,11 +488,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun loadAcademyAnnouncements(view: View) {
         val list = AnnouncementStorage.getTargetedForUser(requireContext())
-        view.findViewById<RecyclerView>(R.id.rv_academy_announcements).adapter = AnnouncementAdapter(list, AnnouncementAdapter.Mode.HOME)
+        view.findViewById<RecyclerView>(R.id.rv_academy_announcements).adapter =
+            AnnouncementAdapter(list, AnnouncementAdapter.Mode.HOME)
     }
 
     private fun loadMyAnnouncements(view: View, userEmail: String) {
         val list = AnnouncementStorage.getByUserEmail(requireContext(), userEmail)
-        view.findViewById<RecyclerView>(R.id.rv_my_announcements).adapter = AnnouncementAdapter(list, AnnouncementAdapter.Mode.MY_LIST)
+        view.findViewById<RecyclerView>(R.id.rv_my_announcements).adapter =
+            AnnouncementAdapter(list, AnnouncementAdapter.Mode.MY_LIST)
     }
 }

@@ -26,8 +26,9 @@ interface UserPreferencesService {
     fun getUserCoursesDetails(context: Context, userKey: String): String
     fun setUserCoursesDetails(context: Context, userKey: String, details: String)
 
+    /** נתיב מקומי או כתובת URL מ-Firebase Storage */
     fun getProfileImagePath(context: Context, userKey: String): String?
-    fun setProfileImagePath(context: Context, userKey: String, path: String)
+    fun setProfileImagePath(context: Context, userKey: String, pathOrUrl: String)
 
     /** מוחק את כל נתוני ההרשמות (שם, חוגים, מפתחות) – לכל המשתמשים */
     fun clearAllRegistrations(context: Context)

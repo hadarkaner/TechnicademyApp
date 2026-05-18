@@ -79,6 +79,13 @@
     <string name="schedule_icon_description">אייקון לוח שנה עבור מערכת השעות</string>
     <string name="schedule_tabs_description">בחירת יום אימון להצגת מערכת השעות</string>
 
+    <!-- Profile – תמונה -->
+    <string name="profile_uploading">מעלה תמונה…</string>
+    <string name="profile_upload_success">תמונת הפרופיל נשמרה בענן</string>
+    <string name="profile_upload_failed">העלאת התמונה נכשלה: %1$s</string>
+    <string name="profile_upload_saved_local">נשמרה במכשיר בלבד (הענן לא זמין)</string>
+    <string name="profile_upload_requires_login">יש להתחבר כדי לשמור תמונת פרופיל</string>
+
     <!-- Profile – ביטול חוג -->
     <string name="cancel_course_title">בקשת ביטול חוג</string>
     <string name="cancel_course_hint">בחרי חוג לביטול. הבקשה תועבר למנהל לאישור.</string>

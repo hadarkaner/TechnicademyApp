@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import com.example.technicademy.R
+import com.example.technicademy.data.repository.FirestoreUserRepository
 import com.example.technicademy.service.UserPreferencesServiceImpl
 import com.example.technicademy.ui.fragments.ContactFragment
 import com.example.technicademy.ui.fragments.HomeFragment
@@ -56,7 +57,9 @@ class MainActivity : AppCompatActivity() {
             if (firebaseUser != null) {
                 val identifier = firebaseUser.email ?: firebaseUser.uid
                 UserPreferencesServiceImpl.setCurrentUser(this, identifier)
-                showMainContent()
+                FirestoreUserRepository.syncFromFirestore(this, identifier) {
+                    showMainContent()
+                }
             } else {
                 val currentUser = UserPreferencesServiceImpl.getCurrentUserKey(this)
                 if (currentUser.isBlank()) {
