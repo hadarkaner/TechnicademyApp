@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_padding_horizontal">20dp</dimen>
+    <dimen name="login_padding_vertical">20dp</dimen>
+    <dimen name="login_content_max_width">400dp</dimen>
+    <dimen name="login_logo_size">96dp</dimen>
+    <dimen name="login_title_margin_bottom">20dp</dimen>
+    <dimen name="login_field_spacing">12dp</dimen>
+    <dimen name="login_label_spacing">6dp</dimen>
+    <dimen name="bottom_bar_reserve_height">60dp</dimen>
+</resources>

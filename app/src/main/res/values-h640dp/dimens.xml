@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="login_padding_vertical">28dp</dimen>
+    <dimen name="login_logo_size">112dp</dimen>
+    <dimen name="login_title_margin_bottom">28dp</dimen>
+</resources>
